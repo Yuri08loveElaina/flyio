@@ -1,0 +1,23 @@
+app = "rusty-vps"
+
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  SSH_PORT = "22"
+
+[[services]]
+  internal_port = 22
+  protocol = "tcp"
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+  [[services.ports]]
+    handlers = []
+    port = 22
